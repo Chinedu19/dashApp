@@ -1,6 +1,8 @@
 import React from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import ListItem from '../components/ListItem'
+import ListItemDeleteAction from '../components/ListItemDeleteAction'
+import ListItemSeparator from '../components/ListItemSeparator'
 import Screen from '../components/Screen'
 
 const messages = [
@@ -31,8 +33,9 @@ const MessagesScreen = () => {
         data={messages}
         keyExtractor={messages => messages.id.toString()}
         renderItem={
-            ({item}) => <ListItem title={item.title} subTitle={item.description} image={item.image}/>
+            ({item}) => <ListItem title={item.title} subTitle={item.description} image={item.image} onPress={() => console.log(item.id + " pressed just now")} renderRightActions={ListItemDeleteAction}/>
         }
+        ItemSeparatorComponent={ListItemSeparator}
         />
         </Screen>
     )
