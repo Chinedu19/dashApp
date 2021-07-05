@@ -1,15 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { View } from 'react-native';
-import WelcomeScreen from './app/screens/WelcomeScreen';
+import { View, StyleSheet } from 'react-native';
 
-
+import MessagesScreen from './app/screens/MessagesScreen';
 
 
 export default function App() {
   
   return (
-    <WelcomeScreen />
+    <MessagesScreen/>
   );
 }
-
+const styles = StyleSheet.create({
+  home : {
+    backgroundColor : 'grey'
+  }
+})
