@@ -1,11 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import ListItem from '../components/ListItem'
 import ListItemDeleteAction from '../components/ListItemDeleteAction'
 import ListItemSeparator from '../components/ListItemSeparator'
 import Screen from '../components/Screen'
 
-const messages = [
+const initialMessage = [
     {
         id : 1,
         title : 'T1',
@@ -26,17 +26,41 @@ const messages = [
     },
     ]
 const MessagesScreen = () => {
-    
+    const [messages, setMessages] = useState(initialMessage);
+    const [refreshing, setRefreshng] = useState(false);
+
+    const handleDelete = message => {
+        setMessages(messages.filter(m => m.id !== message.id));
+
+    }
     return (
         <Screen>
-        <FlatList
-        data={messages}
-        keyExtractor={messages => messages.id.toString()}
-        renderItem={
-            ({item}) => <ListItem title={item.title} subTitle={item.description} image={item.image} onPress={() => console.log(item.id + " pressed just now")} renderRightActions={ListItemDeleteAction}/>
-        }
-        ItemSeparatorComponent={ListItemSeparator}
-        />
+            <FlatList
+            data={messages}
+            keyExtractor={messages => messages.id.toString()}
+            renderItem={
+                ({item}) => <ListItem title={item.title} subTitle={item.description} image={item.image} onPress={() => console.log(item.id + " pressed just now")} 
+                renderRightActions={
+        
+                  () =>  <ListItemDeleteAction onPress={() => handleDelete(item)}/>
+                
+                }/>
+            }
+            ItemSeparatorComponent={ListItemSeparator}
+            refreshing={refreshing}
+            onRefresh={
+                () => {
+                    setMessages([
+                        {
+                            id : 2,
+                            title : 'T2',
+                            description : 'D3',
+                            image : require('../assets/fineboy.jpg')
+                        }
+                    ]);
+                }
+            }
+            />
         </Screen>
     )
 }

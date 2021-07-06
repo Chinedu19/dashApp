@@ -5,15 +5,17 @@ import AppHeading from './AppHeading'
 
 import { Swipeable } from 'react-native-gesture-handler'
 
-const ListItem = ({title, subTitle, image, onPress, renderRightActions}) => {
+
+const ListItem = ({title, subTitle, image, onPress, IconComponent, renderRightActions}) => {
     return (
         <Swipeable renderRightActions={renderRightActions}>
         <TouchableHighlight onPress={onPress} underlayColor={colors.light}>
             <View style={styles.container}>
-                <Image source={image} style={styles.image}/>
-                <View>
+            {IconComponent}
+            {image && <Image source={image} style={styles.image}/>}
+                <View style={styles.rightContainer}>
                     <AppHeading style={styles.title}>{title}</AppHeading>
-                    <AppHeading style={styles.subTitle}>{subTitle}</AppHeading>
+                    {subTitle && <AppHeading style={styles.subTitle}>{subTitle}</AppHeading>}
                 </View>
             </View>
         </TouchableHighlight>
@@ -32,12 +34,15 @@ const styles = StyleSheet.create({
         width: 70,
         height: 70,
         borderRadius: 35,
-        marginRight: 10
     },
     title:{
         fontWeight: '500'
     },
     subTitle:{
         color: colors.medium
+    },
+    rightContainer:{
+        marginLeft: 10,
+        justifyContent: 'center'
     }
 })
