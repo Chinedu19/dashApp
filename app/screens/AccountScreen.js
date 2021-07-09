@@ -54,9 +54,14 @@ const AccountScreen = () => {
                             />
                 )
                 }
-                ListItemSeparator={ListItemSeparator} 
+                ItemSeparatorComponent={ListItemSeparator}
                 />
             </View>
+
+            <ListItem 
+            title="Log Out"
+            IconComponent={<Icon name='logout' backgroundColor='#ffe66d'/>}
+            />
         </Screen>
     )
 }
