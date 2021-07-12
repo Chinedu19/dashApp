@@ -39,7 +39,7 @@ const AppPicker = ({ icon,items,onSelectItem, selectedItem, placeholder}) => {
     )
 }   
 
-export default AppTextInput
+export default AppPicker
 
 const styles = StyleSheet.create({
     container:{

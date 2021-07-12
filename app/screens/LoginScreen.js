@@ -2,10 +2,20 @@ import React, {useState} from 'react'
 import { Image, StyleSheet} from 'react-native'
 
 import { Formik } from 'formik'
+import * as Yup from 'yup'
 
 import AppButton from '../components/AppButton'
 import AppTextInput from '../components/AppTextInput'
 import Screen from '../components/Screen'
+import AppHeading from '../components/AppHeading'
+import ErrorMessage from '../components/ErrorMessage'
+import AppFormField from '../components/AppFormField'
+import SubmitButton from '../components/SubmitButton'
+
+const validationSchema = Yup.object().shape({
+    email: Yup.string().required().email().label("Email"),
+    password: Yup.string().required().min(4).label("Password")
+});
 
 const LoginScreen = () => {
     return (
@@ -13,29 +23,30 @@ const LoginScreen = () => {
             <Image style={styles.logo} source={require('../assets/logo-red.png')}/>
             
             <Formik initialValues={{email: "", password: ""}}
-                onSubmit={(vlaues) => console.log(values)}>
-                {({handleChange, handleSubmit}) => (
+                onSubmit={(values) => console.log(values)}
+                validationSchema={validationSchema}>
+                {() => (
                     <>
-                     <AppTextInput
+                     <AppFormField
                         autoCapitalize="none"
                         autoCorrect={false}
                         icon="email"
+                        name="email"
                         keyboardType="email-address"
                         placeholder="Email"
-                        onChangeText={handleChange("email")}
                         textContentType="emailAddress"
                         />
-                        
-                        <AppTextInput
+
+                        <AppFormField
                         autoCapitalize="none"
                         autoCorrect={false}
                         icon="lock"
                         placeholder="Password"
-                        onChangeText={handleChange("password")}
+                        name="password"
                         secureTextEntry
                         textContentType="password"
                         />
-                    <AppButton title='Login' onPress={handleSubmit} />
+                    <SubmitButton title="Login"/>
                     </>
                 )} 
             </Formik>
