@@ -7,7 +7,7 @@ import defaultStyles from '../config/styles'
 import AppHeading from './AppHeading'
 import Screen from './Screen'
 import PickerItem from './PickerItem'
-const AppTextInput = ({ icon,items,onSelectItem, selectedItem, placeholder}) => {
+const AppPicker = ({ icon,items,onSelectItem, selectedItem, placeholder}) => {
     const [modalVisible, setModalVisible] = useState(false)
     return (
         <>
