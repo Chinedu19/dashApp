@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import AppHeading from './AppHeading'
+import AppHeading from '../AppHeading'
 
 const ErrorMessage = ({error, visible}) => {
     if (!visible || !error) return null;

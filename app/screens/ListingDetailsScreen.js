@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View,Image } from 'react-native'
 
 import AppHeading from '../components/AppHeading'
-import ListItem from '../components/ListItem'
+import ListItem from '../components/Lists/ListItem'
 import colors from '../config/colors'
 
 
